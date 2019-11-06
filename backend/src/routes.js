@@ -8,11 +8,15 @@ import validateUserStore from './app/validators/UserStore';
 import validateSessionStore from './app/validators/SessionStore';
 import validateStudentStore from './app/validators/StudentStore';
 
+import authMiddleware from './app/middlewares/auth';
+
 const routes = new Router();
 
 routes.post('/users', validateUserStore, UserController.store);
 
 routes.post('/sessions', validateSessionStore, SessionController.store);
+
+routes.use(authMiddleware);
 
 routes.post('/students', validateStudentStore, StudentController.store);
 
