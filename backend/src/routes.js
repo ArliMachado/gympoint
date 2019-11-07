@@ -10,9 +10,9 @@ import validateSessionStore from './app/validators/SessionStore';
 import validateStudentStore from './app/validators/StudentStore';
 import validateStudentUpdate from './app/validators/StudentUpdate';
 import validationPlanStore from './app/validators/PlanStore';
+import validationPlanUpdate from './app/validators/PlanUpdate';
 
 import authMiddleware from './app/middlewares/auth';
-import PlanStore from './app/validators/PlanStore';
 
 const routes = new Router();
 
@@ -26,6 +26,8 @@ routes.post('/students', validateStudentStore, StudentController.store);
 routes.put('/students/:id', validateStudentUpdate, StudentController.update);
 
 routes.get('/plans', PlanController.index);
-routes.post('/plans', PlanStore, PlanController.store);
+routes.post('/plans', validationPlanStore, PlanController.store);
+routes.put('/plans/:id', validationPlanUpdate, PlanController.update);
+routes.delete('/plans/:id', PlanController.delete);
 
 export default routes;
