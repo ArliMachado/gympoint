@@ -1,15 +1,14 @@
 import Plan from '../models/Plan';
 
 class PlanController {
-  async store(req, res) {
-    const { id, title, duration, price } = await Plan.create(req.body);
+  async index(req, res) {
+    const plans = await Plan.findAll();
+    return res.json(plans);
+  }
 
-    return res.json({
-      id,
-      title,
-      duration,
-      price,
-    });
+  async store(req, res) {
+    const plan = await Plan.create(req.body);
+    return res.json(plan);
   }
 }
 

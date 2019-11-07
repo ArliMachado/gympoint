@@ -25,6 +25,7 @@ routes.use(authMiddleware);
 routes.post('/students', validateStudentStore, StudentController.store);
 routes.put('/students/:id', validateStudentUpdate, StudentController.update);
 
+routes.get('/plans', PlanController.index);
 routes.post('/plans', PlanStore, PlanController.store);
 
 export default routes;
