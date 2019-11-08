@@ -4,6 +4,7 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import StudentController from './app/controllers/StudentController';
 import PlanController from './app/controllers/PlanController';
+import RegistrationController from './app/controllers/RegistrationController';
 
 import validateUserStore from './app/validators/UserStore';
 import validateSessionStore from './app/validators/SessionStore';
@@ -13,6 +14,7 @@ import validationPlanStore from './app/validators/PlanStore';
 import validationPlanUpdate from './app/validators/PlanUpdate';
 
 import authMiddleware from './app/middlewares/auth';
+import Registration from './app/models/Registration';
 
 const routes = new Router();
 
@@ -29,5 +31,7 @@ routes.get('/plans', PlanController.index);
 routes.post('/plans', validationPlanStore, PlanController.store);
 routes.put('/plans/:id', validationPlanUpdate, PlanController.update);
 routes.delete('/plans/:id', PlanController.delete);
+
+routes.post('/registrations', RegistrationController.store);
 
 export default routes;
