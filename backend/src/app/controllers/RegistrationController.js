@@ -39,6 +39,11 @@ class RegistrationController {
   async update(req, res) {
     const { id } = req.params;
     const registration = await Registration.findByPk(id);
+
+    if (!registration) {
+      return res.status(400).json({ error: 'Matricula não encontrada' });
+    }
+
     const { plan_id, start_date } = req.body;
 
     const registrationUpdated = await registration.update({
@@ -47,6 +52,22 @@ class RegistrationController {
     });
 
     return res.json(registrationUpdated);
+  }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    const registration = await Registration.findByPk(id);
+
+    if (!registration) {
+      return res.status(400).json({ error: 'Matricula não encontrada' });
+    }
+
+    await Registration.destroy({
+      where: { id },
+    });
+
+    return res.json();
   }
 }
 
