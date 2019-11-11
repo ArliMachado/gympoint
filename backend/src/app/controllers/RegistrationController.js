@@ -29,22 +29,42 @@ class RegistrationController {
   async store(req, res) {
     const { student_id, plan_id, start_date } = req.body;
 
-    const plan = await Plan.findByPk(plan_id);
+    const { duration, price } = await Plan.findByPk(plan_id);
 
     const parsedStartDate = parseISO(start_date);
 
-    const end_date = addMonths(parsedStartDate, plan.duration);
-    const price = plan.price * plan.duration;
+    const end_date = addMonths(parsedStartDate, duration);
+    const calculedPrice = price * duration;
 
     const { id } = await Registration.create({
       student_id,
       plan_id,
       start_date,
       end_date,
-      price,
+      price: calculedPrice,
     });
 
     return res.json({ id, start_date, end_date, price });
+  }
+
+  async update(req, res) {
+    const { id } = req.params;
+    const { plan_id, start_date } = req.body;
+
+    const registration = await Registration.findByPk(id);
+
+    if (registration.plan_id !== req.body.plan_id) {
+      const { duration, price } = await Plan.findByPk(plan_id);
+
+      const parsedStartDate = parseISO(start_date);
+
+      req.body.end_date = addMonths(parsedStartDate, duration);
+      req.body.price = Number(price) * duration;
+    }
+
+    const registerUpdated = await registration.update(req.body);
+
+    return res.json(registerUpdated);
   }
 }
 

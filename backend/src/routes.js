@@ -14,7 +14,6 @@ import validationPlanStore from './app/validators/PlanStore';
 import validationPlanUpdate from './app/validators/PlanUpdate';
 
 import authMiddleware from './app/middlewares/auth';
-import Registration from './app/models/Registration';
 
 const routes = new Router();
 
@@ -34,5 +33,6 @@ routes.delete('/plans/:id', PlanController.delete);
 
 routes.get('/registrations', RegistrationController.index);
 routes.post('/registrations', RegistrationController.store);
+routes.put('/registrations/:id', RegistrationController.update);
 
 export default routes;
