@@ -17,19 +17,33 @@ import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
 
-routes.post('/users', validateUserStore, UserController.store);
+const USERS_ENDPOINT = '/users';
+const SESSIONS_ENDPOINT = '/sessions';
+const STUDENTS_ENDPOINT = '/students';
+const PLANS_ENDPOINT = '/plans';
+const REGISTRATIONS_ENDPOINT = '/registrations';
 
-routes.post('/sessions', validateSessionStore, SessionController.store);
+routes.post(USERS_ENDPOINT, validateUserStore, UserController.store);
+
+routes.post(SESSIONS_ENDPOINT, validateSessionStore, SessionController.store);
 
 routes.use(authMiddleware);
 
-routes.post('/students', validateStudentStore, StudentController.store);
-routes.put('/students/:id', validateStudentUpdate, StudentController.update);
+routes.post(STUDENTS_ENDPOINT, validateStudentStore, StudentController.store);
+routes.put(
+  `${STUDENTS_ENDPOINT}/:id`,
+  validateStudentUpdate,
+  StudentController.update
+);
 
-routes.get('/plans', PlanController.index);
-routes.post('/plans', validationPlanStore, PlanController.store);
-routes.put('/plans/:id', validationPlanUpdate, PlanController.update);
-routes.delete('/plans/:id', PlanController.delete);
+routes.get(PLANS_ENDPOINT, PlanController.index);
+routes.post(PLANS_ENDPOINT, validationPlanStore, PlanController.store);
+routes.put(
+  `${PLANS_ENDPOINT}/:id`,
+  validationPlanUpdate,
+  PlanController.update
+);
+routes.delete(`${PLANS_ENDPOINT}/:id`, PlanController.delete);
 
 routes.get('/registrations', RegistrationController.index);
 routes.post('/registrations', RegistrationController.store);
