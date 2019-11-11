@@ -2,6 +2,8 @@ import Registration from '../models/Registration';
 import Plan from '../models/Plan';
 import Student from '../models/Student';
 
+import Mail from '../../lib/Mail';
+
 class RegistrationController {
   async index(req, res) {
     const registrations = await Registration.findAll({
@@ -31,6 +33,25 @@ class RegistrationController {
       student_id,
       plan_id,
       start_date,
+    });
+
+    /** Envio de email */
+
+    const student = await Student.findByPk(student_id);
+
+    const plan = await Plan.findByPk(plan_id);
+
+    await Mail.sendMail({
+      to: `${student.name} <${student.email}>`,
+      subject: 'Confirmação de Matricula',
+      template: 'registration',
+      context: {
+        student: student.name,
+        plan: plan.title,
+        start_date,
+        end_date,
+        price,
+      },
     });
 
     return res.json({ id, start_date, end_date, price });
