@@ -12,6 +12,8 @@ import validateStudentStore from './app/validators/StudentStore';
 import validateStudentUpdate from './app/validators/StudentUpdate';
 import validationPlanStore from './app/validators/PlanStore';
 import validationPlanUpdate from './app/validators/PlanUpdate';
+import validationRegistrationStore from './app/validators/RegistrationStore';
+import validationRegistrationUpdate from './app/validators/RegistrationUpdate';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -45,9 +47,17 @@ routes.put(
 );
 routes.delete(`${PLANS_ENDPOINT}/:id`, PlanController.delete);
 
-routes.get('/registrations', RegistrationController.index);
-routes.post('/registrations', RegistrationController.store);
-routes.put('/registrations/:id', RegistrationController.update);
-routes.delete('/registrations/:id', RegistrationController.delete);
+routes.get(REGISTRATIONS_ENDPOINT, RegistrationController.index);
+routes.post(
+  REGISTRATIONS_ENDPOINT,
+  validationRegistrationStore,
+  RegistrationController.store
+);
+routes.put(
+  `${REGISTRATIONS_ENDPOINT}/:id`,
+  validationRegistrationUpdate,
+  RegistrationController.update
+);
+routes.delete(`${REGISTRATIONS_ENDPOINT}/:id`, RegistrationController.delete);
 
 export default routes;
