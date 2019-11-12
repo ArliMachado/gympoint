@@ -2,7 +2,8 @@ import Registration from '../models/Registration';
 import Plan from '../models/Plan';
 import Student from '../models/Student';
 
-import Mail from '../../lib/Mail';
+import RegistrationMail from '../jobs/RegistrationMail';
+import Queue from '../../lib/Queue';
 
 class RegistrationController {
   async index(req, res) {
@@ -29,32 +30,33 @@ class RegistrationController {
   async store(req, res) {
     const { student_id, plan_id, start_date } = req.body;
 
-    const { id, end_date, price } = await Registration.create({
+    const { id } = await Registration.create({
       student_id,
       plan_id,
       start_date,
     });
 
-    /** Envio de email */
-
-    const student = await Student.findByPk(student_id);
-
-    const plan = await Plan.findByPk(plan_id);
-
-    await Mail.sendMail({
-      to: `${student.name} <${student.email}>`,
-      subject: 'Confirmação de Matricula',
-      template: 'registration',
-      context: {
-        student: student.name,
-        plan: plan.title,
-        start_date,
-        end_date,
-        price,
-      },
+    const registration = await Registration.findByPk(id, {
+      attributes: ['id', 'start_date', 'end_date', 'price'],
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['name', 'email'],
+        },
+        {
+          model: Plan,
+          as: 'plan',
+          attributes: ['title'],
+        },
+      ],
     });
 
-    return res.json({ id, start_date, end_date, price });
+    /** Envio de email */
+
+    await Queue.add(RegistrationMail.key, { registration });
+
+    return res.json(registration);
   }
 
   async update(req, res) {
