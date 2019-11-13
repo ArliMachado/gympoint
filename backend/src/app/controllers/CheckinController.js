@@ -1,4 +1,4 @@
-import { addDays } from 'date-fns';
+import { startOfWeek, endOfWeek } from 'date-fns';
 import { Op } from 'sequelize';
 
 import Checkin from '../models/Checkin';
@@ -14,20 +14,22 @@ class CheckinController {
       return res.status(400).json({ error: 'O aluno informado não existe ' });
     }
 
-    const startDate = new Date();
-
-    const endDate = addDays(startDate, 7);
-
-    const checkins = await Checkin.findAll({
+    const { count: diasFrequentados } = await Checkin.findAndCountAll({
       where: {
         student_id: id,
-        // created_at: {
-        //   [Op.between]: [startDate, endDate],
-        // },
+        created_at: {
+          [Op.between]: [startOfWeek(new Date()), endOfWeek(new Date())],
+        },
       },
     });
 
-    //    await Checkin.create({ student_id: id });
+    if (diasFrequentados === 5) {
+      return res
+        .status(400)
+        .json({ error: 'Você atingiu o limite de frequências semanais' });
+    }
+
+    await Checkin.create({ student_id: id });
 
     return res.json();
   }
