@@ -1,10 +1,36 @@
-import { startOfWeek, endOfWeek } from 'date-fns';
+import { startOfWeek, endOfWeek, format } from 'date-fns';
 import { Op } from 'sequelize';
 
 import Checkin from '../models/Checkin';
 import Student from '../models/Student';
 
 class CheckinController {
+  async index(req, res) {
+    const { id } = req.params;
+
+    const student = await Student.findByPk(id);
+
+    if (!student) {
+      return res.status(400).json({ error: 'O aluno informado não existe ' });
+    }
+
+    const checkins = await Checkin.findAll({
+      where: {
+        student_id: id,
+      },
+      attributes: ['id', 'created_at'],
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['name', 'email'],
+        },
+      ],
+    });
+
+    return res.json(checkins);
+  }
+
   async store(req, res) {
     const { id } = req.params;
 

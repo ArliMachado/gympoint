@@ -39,6 +39,7 @@ routes.put(
   StudentController.update
 );
 routes.post(`${STUDENTS_ENDPOINT}/:id/checkins`, CheckinController.store);
+routes.get(`${STUDENTS_ENDPOINT}/:id/checkins`, CheckinController.index);
 
 routes.get(PLANS_ENDPOINT, PlanController.index);
 routes.post(PLANS_ENDPOINT, validationPlanStore, PlanController.store);
