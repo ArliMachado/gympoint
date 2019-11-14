@@ -6,6 +6,7 @@ import StudentController from './app/controllers/StudentController';
 import PlanController from './app/controllers/PlanController';
 import RegistrationController from './app/controllers/RegistrationController';
 import CheckinController from './app/controllers/CheckinController';
+import HelpOrderController from './app/controllers/HelpOrderController';
 
 import validateUserStore from './app/validators/UserStore';
 import validateSessionStore from './app/validators/SessionStore';
@@ -25,6 +26,7 @@ const SESSIONS_ENDPOINT = '/sessions';
 const STUDENTS_ENDPOINT = '/students';
 const PLANS_ENDPOINT = '/plans';
 const REGISTRATIONS_ENDPOINT = '/registrations';
+const HELP_ORDERS_ENDPOINT = '/help-orders';
 
 routes.post(USERS_ENDPOINT, validateUserStore, UserController.store);
 
@@ -40,6 +42,8 @@ routes.put(
 );
 routes.post(`${STUDENTS_ENDPOINT}/:id/checkins`, CheckinController.store);
 routes.get(`${STUDENTS_ENDPOINT}/:id/checkins`, CheckinController.index);
+
+routes.get(`${HELP_ORDERS_ENDPOINT}`, HelpOrderController.index);
 
 routes.get(PLANS_ENDPOINT, PlanController.index);
 routes.post(PLANS_ENDPOINT, validationPlanStore, PlanController.store);
