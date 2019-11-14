@@ -16,6 +16,7 @@ import validationPlanStore from './app/validators/PlanStore';
 import validationPlanUpdate from './app/validators/PlanUpdate';
 import validationRegistrationStore from './app/validators/RegistrationStore';
 import validationRegistrationUpdate from './app/validators/RegistrationUpdate';
+import validationHelpOrdersStore from './app/validators/HelpOrdersStore';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -42,6 +43,12 @@ routes.put(
 );
 routes.post(`${STUDENTS_ENDPOINT}/:id/checkins`, CheckinController.store);
 routes.get(`${STUDENTS_ENDPOINT}/:id/checkins`, CheckinController.index);
+
+routes.post(
+  `${STUDENTS_ENDPOINT}/:id${HELP_ORDERS_ENDPOINT}`,
+  validationHelpOrdersStore,
+  HelpOrderController.store
+);
 
 routes.get(`${HELP_ORDERS_ENDPOINT}`, HelpOrderController.index);
 
