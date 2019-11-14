@@ -17,6 +17,7 @@ import validationPlanUpdate from './app/validators/PlanUpdate';
 import validationRegistrationStore from './app/validators/RegistrationStore';
 import validationRegistrationUpdate from './app/validators/RegistrationUpdate';
 import validationHelpOrdersStore from './app/validators/HelpOrdersStore';
+import validationHelpOrdersUpdate from './app/validators/HelpOrdersUpdate';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -50,7 +51,21 @@ routes.post(
   HelpOrderController.store
 );
 
-routes.get(`${HELP_ORDERS_ENDPOINT}`, HelpOrderController.index);
+routes.get(
+  `${STUDENTS_ENDPOINT}/:id${HELP_ORDERS_ENDPOINT}`,
+  HelpOrderController.index
+);
+
+routes.get(
+  `${HELP_ORDERS_ENDPOINT}`,
+  HelpOrderController.findUnanswerHelpOrders
+);
+
+routes.put(
+  `${HELP_ORDERS_ENDPOINT}/:id/answer`,
+  validationHelpOrdersUpdate,
+  HelpOrderController.update
+);
 
 routes.get(PLANS_ENDPOINT, PlanController.index);
 routes.post(PLANS_ENDPOINT, validationPlanStore, PlanController.store);
