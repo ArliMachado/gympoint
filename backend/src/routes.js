@@ -36,6 +36,7 @@ routes.post(SESSIONS_ENDPOINT, validateSessionStore, SessionController.store);
 
 routes.use(authMiddleware);
 
+routes.get(STUDENTS_ENDPOINT, StudentController.index);
 routes.post(STUDENTS_ENDPOINT, validateStudentStore, StudentController.store);
 routes.put(
   `${STUDENTS_ENDPOINT}/:id`,

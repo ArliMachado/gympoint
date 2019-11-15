@@ -1,6 +1,21 @@
+import { Op } from 'sequelize';
 import Student from '../models/Student';
 
 class StudentController {
+  async index(req, res) {
+    const { q = '' } = req.query;
+
+    const students = await Student.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${q}%`,
+        },
+      },
+    });
+
+    return res.json(students);
+  }
+
   async store(req, res) {
     const studentExists = await Student.findOne({
       where: { email: req.body.email },
