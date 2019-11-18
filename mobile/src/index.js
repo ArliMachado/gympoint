@@ -1,13 +1,15 @@
 import React from 'react';
 
-import {Text, StatusBar, SafeAreaView} from 'react-native';
+import {StatusBar} from 'react-native';
 
-export default function App() {
+import App from './App';
+
+export default function Index() {
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
 
-      <Text>Ola</Text>
+      <App />
     </>
   );
 }
