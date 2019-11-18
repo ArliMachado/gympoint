@@ -32,9 +32,9 @@ export const Form = styled.View`
 `;
 
 export const FormInput = styled.TextInput.attrs({
-  // placeholderTextColor: 'rgba(255, 255, 255, 0.1)',
+  placeholderTextColor: '#999',
 })`
   font-size: 15px;
   margin-left: 10px;
-  color: #fff;
+  color: #0b2031;
 `;
