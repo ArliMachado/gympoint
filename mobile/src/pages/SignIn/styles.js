@@ -1,6 +1,8 @@
 import {Platform} from 'react-native';
 import styled from 'styled-components/native';
 
+import {colors, fonts, metrics} from '~/styles';
+
 export const Container = styled.KeyboardAvoidingView.attrs({
   enabled: Platform.OS === 'ios',
   behavior: 'padding',
@@ -8,33 +10,33 @@ export const Container = styled.KeyboardAvoidingView.attrs({
   flex: 1;
   justify-content: center;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 ${metrics.basePadding}px;
 `;
 
 export const LogoContent = styled.View`
-  /* flex: 1; */
   align-items: center;
   justify-content: center;
 `;
 
 export const TextLogo = styled.Text`
-  color: #ee4e62;
+  color: ${colors.primary};
   font-weight: bold;
-  font-size: 16px;
-
-  margin-top: 10px;
+  font-size: ${fonts.bigger}px;
+  margin-top: ${metrics.baseMargin}px;
 `;
 
 export const Form = styled.View`
-  margin-top: 20px;
-  /* border-width: 1; */
-  background: rgba(255, 255, 255, 0.1);
+  margin-top: ${metrics.baseMargin * 2}px;
+  align-self: stretch;
 `;
 
 export const FormInput = styled.TextInput.attrs({
-  placeholderTextColor: '#999',
+  placeholderTextColor: colors.regular,
 })`
-  font-size: 15px;
-  margin-left: 10px;
-  color: #0b2031;
+  flex-direction: row;
+  font-size: ${fonts.medium}px;
+  border-width: 1;
+  border-color: ${colors.regular};
+  padding: 0 ${metrics.basePadding}px;
+  height: 45px;
 `;
