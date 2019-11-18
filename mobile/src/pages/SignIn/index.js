@@ -3,10 +3,21 @@ import {Image} from 'react-native';
 
 import logo from '~/assets/gympoint.png';
 
-import {Container, LogoContent, TextLogo, Form, FormInput} from './styles';
+import {
+  Container,
+  LogoContent,
+  TextLogo,
+  Form,
+  FormInput,
+  FormButton,
+} from './styles';
 
 export default function SignIn() {
   const [id, setId] = useState('');
+
+  function handleSubmit() {
+    console.log(id);
+  }
 
   return (
     <Container>
@@ -21,6 +32,7 @@ export default function SignIn() {
           value={id}
           onChangeText={setId}
         />
+        <FormButton onPress={handleSubmit}>Entrar no Sistema</FormButton>
       </Form>
     </Container>
   );

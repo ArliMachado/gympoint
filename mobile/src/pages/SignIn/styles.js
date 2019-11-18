@@ -2,6 +2,7 @@ import {Platform} from 'react-native';
 import styled from 'styled-components/native';
 
 import {colors, fonts, metrics} from '~/styles';
+import Button from '~/components/Button';
 
 export const Container = styled.KeyboardAvoidingView.attrs({
   enabled: Platform.OS === 'ios',
@@ -36,7 +37,11 @@ export const FormInput = styled.TextInput.attrs({
   flex-direction: row;
   font-size: ${fonts.medium}px;
   border-width: 1;
-  border-color: ${colors.regular};
+  border-color: ${colors.light};
   padding: 0 ${metrics.basePadding}px;
   height: 45px;
+`;
+
+export const FormButton = styled(Button)`
+  margin-top: ${metrics.baseMargin * 2}px;
 `;
