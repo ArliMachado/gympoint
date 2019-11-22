@@ -30,9 +30,17 @@ const PLANS_ENDPOINT = '/plans';
 const REGISTRATIONS_ENDPOINT = '/registrations';
 const HELP_ORDERS_ENDPOINT = '/help-orders';
 
+// Auth routes
 routes.post(USERS_ENDPOINT, validateUserStore, UserController.store);
 
 routes.post(SESSIONS_ENDPOINT, validateSessionStore, SessionController.store);
+
+// Students routes
+
+routes.post(`${STUDENTS_ENDPOINT}/:id/checkins`, CheckinController.store);
+routes.get(`${STUDENTS_ENDPOINT}/:id/checkins`, CheckinController.index);
+
+// Admin routes
 
 routes.use(authMiddleware);
 
@@ -43,8 +51,6 @@ routes.put(
   validateStudentUpdate,
   StudentController.update
 );
-routes.post(`${STUDENTS_ENDPOINT}/:id/checkins`, CheckinController.store);
-routes.get(`${STUDENTS_ENDPOINT}/:id/checkins`, CheckinController.index);
 
 routes.post(
   `${STUDENTS_ENDPOINT}/:id${HELP_ORDERS_ENDPOINT}`,
