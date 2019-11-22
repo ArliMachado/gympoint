@@ -5,9 +5,9 @@ import produce from 'immer';
  */
 
 export const Types = {
-  CHECKIN_REQUEST: '@checkin/CHECK_IN_REQUEST',
-  CHECKIN_SUCCESS: '@checkin/CHECK_IN_SUCCESS',
-  CHECKIN_FAILURE: '@checkin/CHECK_IN_FAILURE',
+  SIGNIN_REQUEST: '@auth/SIGN_IN_REQUEST',
+  SIGNIN_SUCCESS: '@auth/SIGN_IN_SUCCESS',
+  SIGNIN_FAILURE: '@auth/SIGN_IN_FAILURE',
 };
 
 /**
@@ -19,18 +19,20 @@ const INITIAL_STATE = {student_id: null, signed: false, loading: false};
 export default function checkin(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
-      case Types.CHECKIN_REQUEST: {
+      case Types.SIGNIN_REQUEST:
         draft.student_id = action.payload.id;
         draft.loading = true;
         break;
-      }
 
-      case Types.CHECKIN_SUCCESS: {
+      case Types.SIGNIN_SUCCESS: {
+        draft.signed = true;
+        draft.loading = false;
         break;
       }
 
-      case Types.CHECKIN_FAILURE: {
+      case Types.SIGNIN_FAILURE: {
         draft.loading = false;
+        draft.signed = false;
         draft.student_id = null;
         break;
       }
@@ -44,14 +46,14 @@ export default function checkin(state = INITIAL_STATE, action) {
  */
 
 export const Creators = {
-  checkinRequest: id => ({
-    type: Types.CHECKIN_REQUEST,
+  signInRequest: id => ({
+    type: Types.SIGNIN_REQUEST,
     payload: {id},
   }),
-  checkinSuccess: () => ({
-    type: Types.CHECKIN_SUCCESS,
+  signInSuccess: () => ({
+    type: Types.SIGNIN_SUCCESS,
   }),
-  checkinFailure: () => ({
-    type: Types.CHECKIN_FAILURE,
+  signInFailure: () => ({
+    type: Types.SIGNIN_FAILURE,
   }),
 };

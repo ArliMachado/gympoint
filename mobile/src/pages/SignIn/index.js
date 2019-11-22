@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import {Image} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 
 import logo from '~/assets/gympoint.png';
+
+import {Creators as SignInCreators} from '~/store/ducks/signin';
 
 import {
   Container,
@@ -13,10 +16,14 @@ import {
 } from './styles';
 
 export default function SignIn() {
+  const dispatch = useDispatch();
+
   const [id, setId] = useState('');
 
+  const loading = useSelector(state => state.signin.loading);
+
   function handleSubmit() {
-    console.log(id);
+    dispatch(SignInCreators.signInRequest(id));
   }
 
   return (
@@ -32,7 +39,9 @@ export default function SignIn() {
           value={id}
           onChangeText={setId}
         />
-        <FormButton onPress={handleSubmit}>Entrar no Sistema</FormButton>
+        <FormButton loading={loading} onPress={handleSubmit}>
+          Entrar no Sistema
+        </FormButton>
       </Form>
     </Container>
   );
