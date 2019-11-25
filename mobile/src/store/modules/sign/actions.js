@@ -13,7 +13,7 @@ export function signInRequest(id) {
 
 export function signInSuccess() {
   return {
-    type: Types.SIGNIN_REQUEST,
+    type: Types.SIGNIN_SUCCESS,
   };
 }
 

@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import logo from '~/assets/gympoint.png';
 
-import {Creators as SignInCreators} from '~/store/ducks/signin';
+import {signInRequest} from '~/store/modules/sign/actions';
 
 import {
   Container,
@@ -20,10 +20,10 @@ export default function SignIn() {
 
   const [id, setId] = useState('');
 
-  const loading = useSelector(state => state.signin.loading);
+  const {loading} = useSelector(state => state.sign);
 
   function handleSubmit() {
-    dispatch(SignInCreators.signInRequest(id));
+    dispatch(signInRequest(id));
   }
 
   return (

@@ -3,8 +3,6 @@ import {Provider} from 'react-redux';
 
 import {StatusBar} from 'react-native';
 
-import './config/ReactotronConfig';
-
 import App from './App';
 
 import store from './store';

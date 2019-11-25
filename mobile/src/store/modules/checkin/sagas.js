@@ -1,9 +1,9 @@
-import {call, put} from 'redux-saga/effects';
+import {all, takeLatest, call, put} from 'redux-saga/effects';
 import {Alert} from 'react-native';
 
 import api from '~/services/api';
 
-import {Creators} from '../ducks/checkin';
+import {Types, checkinSuccess, checkinFailure} from './actions';
 
 export function* checkIn({payload}) {
   try {
@@ -11,9 +11,11 @@ export function* checkIn({payload}) {
 
     yield call(api.post, `/students/${id}/checkins`);
 
-    yield put(Creators.checkinSuccess());
+    yield put(checkinSuccess());
   } catch (err) {
-    yield put(Creators.checkinFailure());
+    yield put(checkinFailure());
     Alert.alert('Erro no Checkin', 'Houve um erro ao efetuar checkin');
   }
 }
+
+export default all([takeLatest('@checkin/CHECK_IN_REQUEST', checkIn)]);
