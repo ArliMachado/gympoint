@@ -2,8 +2,16 @@ import React from 'react';
 import {View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import {Container} from './styles';
+
+import Header from '~/components/Header';
+
 export default function Checkins() {
-  return <View />;
+  return (
+    <Container>
+      <Header />
+    </Container>
+  );
 }
 
 Checkins.navigationOptions = {

@@ -17,9 +17,14 @@ export default (isSigned = false) =>
     createSwitchNavigator(
       {
         Sign: SignIn,
-        App: createStackNavigator({
-          AppStack,
-        }),
+        App: createStackNavigator(
+          {
+            AppStack,
+          },
+          {
+            headerMode: 'none',
+          },
+        ),
       },
       {
         initialRouteName: isSigned ? 'App' : 'Sign',
