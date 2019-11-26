@@ -8,6 +8,7 @@ import createRouter from '~/routes';
 export default function App() {
   const {signed} = useSelector(state => state.sign);
 
-  const Routes = createRouter(signed);
+  // const Routes = createRouter(signed);
+  const Routes = createRouter(true);
   return <Routes />;
 }
