@@ -1,13 +1,33 @@
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity, Text, View} from 'react-native';
 
-import {Container} from './styles';
+import logo from '~/assets/gympoint.png';
 
-export default function Header() {
+import {
+  Container,
+  IconContent,
+  BackToPage,
+  LogoContent,
+  LogoImage,
+  LogoText,
+} from './styles';
+
+const Header = ({navigateTo}) => {
   return (
     <Container>
-      <TouchableOpacity onPress={() => {}} />
-      <Text>teste</Text>
+      {/* {navigateTo && ( */}
+      <TouchableOpacity onPress={navigateTo}>
+        <IconContent>
+          <BackToPage name="chevron-left" size={24} />
+        </IconContent>
+      </TouchableOpacity>
+      {/* // )} */}
+      <LogoContent>
+        <LogoImage source={logo} resizeMode="contain" />
+        <LogoText>GYMPOINT</LogoText>
+      </LogoContent>
     </Container>
   );
-}
+};
+
+export default Header;
