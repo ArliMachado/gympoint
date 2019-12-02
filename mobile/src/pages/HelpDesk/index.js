@@ -7,7 +7,7 @@ export default function HelpDesk() {
 }
 
 HelpDesk.navigationOptions = {
-  tabBarLabel: 'Check-ins',
+  tabBarLabel: 'Pedir ajuda',
   tabBarIcon: ({tintColor}) => (
     <Icon name="live-help" size={20} color={tintColor} />
   ),
