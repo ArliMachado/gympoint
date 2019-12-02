@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-native';
 import {reactotronRedux} from 'reactotron-redux';
 import reactotronSaga from 'reactotron-redux-saga';
 
-const host = '10.168.70.224';
+const host = '10.168.70.172';
 // const host = 'localhost';
 
 if (__DEV__) {
