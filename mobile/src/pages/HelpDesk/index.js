@@ -1,9 +1,10 @@
 import React from 'react';
-import {View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import Container from '~/components/Container';
+
 export default function HelpDesk() {
-  return <View />;
+  return <Container />;
 }
 
 HelpDesk.navigationOptions = {

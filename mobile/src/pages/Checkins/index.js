@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {Container, NewCheckin, List} from './styles';
+import {NewCheckin, List} from './styles';
 
-import Header from '~/components/Header';
+import Container from '~/components/Container';
 import Checkin from '~/components/Checkin';
 
 import api from '~/services/api';
@@ -21,17 +21,14 @@ export default function Checkins() {
   }, []);
 
   return (
-    <>
-      <Header />
-      <Container>
-        <NewCheckin onPress={() => {}}>Novo check-in</NewCheckin>
-        <List
-          data={checkins}
-          keyExtractor={item => String(item.id)}
-          renderItem={item => <Checkin data={item} handleCheckin={() => {}} />}
-        />
-      </Container>
-    </>
+    <Container>
+      <NewCheckin onPress={() => {}}>Novo check-in</NewCheckin>
+      <List
+        data={checkins}
+        keyExtractor={item => String(item.id)}
+        renderItem={item => <Checkin data={item} handleCheckin={() => {}} />}
+      />
+    </Container>
   );
 }
 
