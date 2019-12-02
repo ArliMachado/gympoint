@@ -3,8 +3,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Container from '~/components/Container';
 
+import {Content, NewHelp} from './styles';
+
 export default function HelpDesk() {
-  return <Container />;
+  return (
+    <Container>
+      <NewHelp onPress={() => {}}>Novo pedido de auxílio </NewHelp>
+    </Container>
+  );
 }
 
 HelpDesk.navigationOptions = {
