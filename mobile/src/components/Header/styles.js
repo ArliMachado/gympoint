@@ -5,10 +5,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {fonts, colors, metrics} from '~/styles';
 
 export const Container = styled.View`
-  height: ${54 + getStatusBarHeight()};
   padding-top: ${getStatusBarHeight()};
   background-color: ${colors.white};
-  /* flex: 1; */
   flex-direction: row;
   justify-content: center;
   align-items: center;
