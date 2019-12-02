@@ -1,8 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-import Button from '~/components/Button';
 
 import {Container, NewCheckin, List} from './styles';
 
