@@ -1,16 +1,40 @@
-import React from 'react';
-import {View} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {Container} from './styles';
+import Button from '~/components/Button';
+
+import {Container, NewCheckin, List} from './styles';
 
 import Header from '~/components/Header';
+import Checkin from '~/components/Checkin';
+
+import api from '~/services/api';
 
 export default function Checkins() {
+  const [checkins, setCheckins] = useState([]);
+
+  async function loadCheckins() {
+    const response = await api.get('students/1/checkins');
+    setCheckins(response.data);
+  }
+
+  useEffect(() => {
+    loadCheckins();
+  }, []);
+
   return (
-    <Container>
+    <>
       <Header />
-    </Container>
+      <Container>
+        <NewCheckin onPress={() => {}}>Novo check-in</NewCheckin>
+        <List
+          data={checkins}
+          keyExtractor={item => String(item.id)}
+          renderItem={item => <Checkin data={item} />}
+        />
+      </Container>
+    </>
   );
 }
 
