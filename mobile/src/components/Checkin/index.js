@@ -1,10 +1,11 @@
 import React, {useMemo} from 'react';
-import {parseISO, formatRelative, formatDistanceToNow} from 'date-fns';
+import {TouchableOpacity} from 'react-native';
+import {parseISO, formatDistanceToNow} from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
 import {Container, Title, CreatedAt} from './styles';
 
-export default function Checkin({data}) {
+export default function Checkin({data, handleCheckin}) {
   const {id, created_at} = data.item;
 
   const dateParsed = useMemo(() => {
@@ -15,9 +16,11 @@ export default function Checkin({data}) {
   }, [created_at]);
 
   return (
-    <Container>
-      <Title>Check-in #{id}</Title>
-      <CreatedAt>{dateParsed}</CreatedAt>
-    </Container>
+    <TouchableOpacity onPress={handleCheckin}>
+      <Container>
+        <Title>Check-in #{id}</Title>
+        <CreatedAt>{dateParsed}</CreatedAt>
+      </Container>
+    </TouchableOpacity>
   );
 }
