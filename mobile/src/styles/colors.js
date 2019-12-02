@@ -8,6 +8,7 @@ export default {
   black: '#000',
 
   primary: '#ee4e62',
+  secundary: '#ECEEF3',
 
   transparent: 'transparent',
   darkTransparent: 'rgba(0,0,0,0.5)',
