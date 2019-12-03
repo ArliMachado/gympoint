@@ -8,6 +8,7 @@ import {
   Container,
   ContentHeader,
   ContentStatus,
+  IconStatus,
   Status,
   DateAnswered,
   Question,
@@ -29,8 +30,10 @@ export default function Help({data, handleHelp}) {
       <Container>
         <ContentHeader>
           <ContentStatus>
-            <Icon name="check-circle" color="#999999" />
-            <Status>{answered ? 'Respondido' : 'Sem resposta'}</Status>
+            <IconStatus answered={answered} name="check-circle" />
+            <Status answered={answered}>
+              {answered ? 'Respondido' : 'Sem resposta'}
+            </Status>
           </ContentStatus>
           <DateAnswered>{dateParsed}</DateAnswered>
         </ContentHeader>

@@ -22,18 +22,16 @@ export const ContentStatus = styled.View`
   align-items: center;
 `;
 
-export const IconStatus = styled(Icon).attrs({
+export const IconStatus = styled(Icon).attrs(props => ({
   size: 16,
-})`
-  size: '16px;
-';
-`;
+  color: props.answered ? colors.green : colors.regular,
+}))``;
 
 export const Status = styled.Text`
   margin-left: ${metrics.baseMargin / 2}px;
   font-size: ${fonts.regular}px;
   font-weight: bold;
-  color: ${colors.regular};
+  color: ${props => (props.answered ? colors.green : colors.regular)};
 `;
 
 export const DateAnswered = styled.Text`
