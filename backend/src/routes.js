@@ -40,18 +40,6 @@ routes.post(SESSIONS_ENDPOINT, validateSessionStore, SessionController.store);
 routes.post(`${STUDENTS_ENDPOINT}/:id/checkins`, CheckinController.store);
 routes.get(`${STUDENTS_ENDPOINT}/:id/checkins`, CheckinController.index);
 
-// Admin routes
-
-routes.use(authMiddleware);
-
-routes.get(STUDENTS_ENDPOINT, StudentController.index);
-routes.post(STUDENTS_ENDPOINT, validateStudentStore, StudentController.store);
-routes.put(
-  `${STUDENTS_ENDPOINT}/:id`,
-  validateStudentUpdate,
-  StudentController.update
-);
-
 routes.post(
   `${STUDENTS_ENDPOINT}/:id${HELP_ORDERS_ENDPOINT}`,
   validationHelpOrdersStore,
@@ -66,6 +54,18 @@ routes.get(
 routes.get(
   `${HELP_ORDERS_ENDPOINT}`,
   HelpOrderController.findUnanswerHelpOrders
+);
+
+// Admin routes
+
+routes.use(authMiddleware);
+
+routes.get(STUDENTS_ENDPOINT, StudentController.index);
+routes.post(STUDENTS_ENDPOINT, validateStudentStore, StudentController.store);
+routes.put(
+  `${STUDENTS_ENDPOINT}/:id`,
+  validateStudentUpdate,
+  StudentController.update
 );
 
 routes.put(
