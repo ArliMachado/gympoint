@@ -8,6 +8,14 @@ class HelpOrders extends Model {
         question: Sequelize.STRING,
         answer: Sequelize.STRING,
         answer_at: Sequelize.DATE,
+        answered: {
+          type: Sequelize.VIRTUAL(Sequelize.BOOLEAN, ['answer', 'answer_at']),
+          get() {
+            return (
+              this.get('answer') !== null && this.get('answer_at') !== null
+            );
+          },
+        },
       },
       {
         sequelize,
