@@ -5,12 +5,12 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 import SignIn from '~/pages/SignIn';
 import Checkins from '~/pages/Checkins';
-import HelpDesk from '~/pages/HelpDesk';
+import HelpRequest from '~/pages/HelpRequest';
 
 const AppStack = createBottomTabNavigator(
   {
     Checkins,
-    HelpDesk,
+    HelpRequest,
   },
   {
     tabBarOptions: {
