@@ -1,13 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Header from '~/components/Header';
 
 import {Content} from './styles';
 
-export default function Container({children}) {
+const Container = ({children, navigateTo}) => {
   return (
     <>
-      <Header />
+      <Header navigateTo />
       <Content>{children}</Content>
     </>
   );
-}
+};
+
+Container.defaultProps = {
+  navigateTo: null,
+};
+
+export default Container;

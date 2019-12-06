@@ -5,18 +5,19 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {fonts, colors, metrics} from '~/styles';
 
 export const Container = styled.View`
-  padding-top: ${getStatusBarHeight()};
+  padding-top: 10px;
   background-color: ${colors.white};
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 `;
 export const BackToPage = styled(Icon)`
-  /* margin-left: ${metrics.baseMargin}px; */
+  margin-left: ${metrics.baseMargin}px;
 `;
 
 export const IconContent = styled.View`
-  margin-left: ${metrics.baseMargin}px;
+  /* margin-left: ${metrics.baseMargin}px; */
 `;
 
 export const LogoContent = styled.View`

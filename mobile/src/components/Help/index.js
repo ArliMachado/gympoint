@@ -14,7 +14,6 @@ import {
 } from './styles';
 
 export default function Help({data, handleHelp}) {
-  console.tron.log(data);
   const {answered, createdAt, question} = data.item;
 
   const dateParsed = useMemo(() => {
