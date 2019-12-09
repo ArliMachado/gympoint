@@ -16,7 +16,7 @@ import {
 
 const Header = ({navigateTo}) => {
   return (
-    <Container>
+    <Container haveRedirect={!!navigateTo}>
       {navigateTo && (
         <TouchableOpacity onPress={navigateTo}>
           <IconContent>
@@ -24,7 +24,7 @@ const Header = ({navigateTo}) => {
           </IconContent>
         </TouchableOpacity>
       )}
-      <LogoContent>
+      <LogoContent haveRedirect={!!navigateTo}>
         <LogoImage source={logo} resizeMode="contain" />
         <LogoText>GYMPOINT</LogoText>
       </LogoContent>
