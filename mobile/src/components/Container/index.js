@@ -8,7 +8,7 @@ import {Content} from './styles';
 const Container = ({children, navigateTo}) => {
   return (
     <>
-      <Header navigateTo />
+      <Header navigateTo={navigateTo} />
       <Content>{children}</Content>
     </>
   );

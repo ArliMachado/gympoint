@@ -10,11 +10,14 @@ import Container from '~/components/Container';
 
 export default function HelpRequest({navigation}) {
   const [helpOrders, setHelpOrders] = useState([]);
-  console.tron.log(navigation);
 
   async function loadHelpOrders() {
     const response = await api.get('students/1/help-orders');
     setHelpOrders(response.data);
+  }
+
+  function handleToHelpAnswered(item) {
+    navigation.navigate('HelpAnswered', item);
   }
 
   useEffect(() => {
@@ -30,10 +33,7 @@ export default function HelpRequest({navigation}) {
         data={helpOrders}
         keyExtractor={item => String(item.id)}
         renderItem={item => (
-          <Help
-            data={item}
-            handleHelp={() => navigation.navigate('HelpAnswered', {item})}
-          />
+          <Help data={item} handleHelp={() => handleToHelpAnswered(item)} />
         )}
       />
     </Container>

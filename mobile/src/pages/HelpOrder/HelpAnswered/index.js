@@ -3,13 +3,14 @@ import Container from '~/components/Container';
 
 import {ContentHeader, Title, CreatedAt, Question, Answer} from './styles';
 
-export default function HelpAnswered({item, navigation}) {
-  console.tron.log(`item: ${item}`);
+export default function HelpAnswered({navigation}) {
+  const {createdAt, question, answer} = navigation.getParam('item');
+
   function handleBackHelpOrders() {
     navigation.navigate('HelpRequest');
   }
   return (
-    <Container>
+    <Container navigateTo={handleBackHelpOrders}>
       <ContentHeader>
         <Title>PERGUNTA</Title>
         <CreatedAt>{createdAt}</CreatedAt>
