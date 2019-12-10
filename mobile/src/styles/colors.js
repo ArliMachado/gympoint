@@ -4,7 +4,7 @@ export default {
   light: '#DDD',
   regular: '#999',
   dark: '#666',
-  darker: '#333',
+  darker: '#444',
   black: '#000',
   green: '#42cb59',
 
