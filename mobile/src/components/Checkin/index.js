@@ -1,5 +1,4 @@
 import React, {useMemo} from 'react';
-import {TouchableOpacity} from 'react-native';
 import {parseISO, formatDistanceStrict} from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
