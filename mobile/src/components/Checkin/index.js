@@ -5,7 +5,7 @@ import pt from 'date-fns/locale/pt';
 
 import {Container, Title, CreatedAt} from './styles';
 
-export default function Checkin({data, handleCheckin}) {
+export default function Checkin({data}) {
   const {id, created_at} = data.item;
 
   const dateParsed = useMemo(() => {
@@ -16,11 +16,9 @@ export default function Checkin({data, handleCheckin}) {
   }, [created_at]);
 
   return (
-    <TouchableOpacity onPress={handleCheckin}>
-      <Container>
-        <Title>Check-in #{id}</Title>
-        <CreatedAt>{dateParsed}</CreatedAt>
-      </Container>
-    </TouchableOpacity>
+    <Container>
+      <Title>Check-in #{id}</Title>
+      <CreatedAt>{dateParsed}</CreatedAt>
+    </Container>
   );
 }

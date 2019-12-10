@@ -26,7 +26,7 @@ export default function Checkins() {
       <List
         data={checkins}
         keyExtractor={item => String(item.id)}
-        renderItem={item => <Checkin data={item} handleCheckin={() => {}} />}
+        renderItem={item => <Checkin data={item} />}
       />
     </Container>
   );
