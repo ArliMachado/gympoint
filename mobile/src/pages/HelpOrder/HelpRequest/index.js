@@ -20,15 +20,17 @@ export default function HelpRequest({navigation}) {
     navigation.navigate('HelpAnswered', item);
   }
 
+  function handleNewHelp() {
+    navigation.navigate('NewHelp');
+  }
+
   useEffect(() => {
     loadHelpOrders();
   }, []);
 
   return (
     <Container>
-      <NewHelp onPress={() => navigation.navigate()}>
-        Novo pedido de auxílio{' '}
-      </NewHelp>
+      <NewHelp onPress={handleNewHelp}>Novo pedido de auxílio</NewHelp>
       <List
         data={helpOrders}
         keyExtractor={item => String(item.id)}
