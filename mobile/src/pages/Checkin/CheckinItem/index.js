@@ -4,7 +4,7 @@ import pt from 'date-fns/locale/pt';
 
 import {Container, Title, CreatedAt} from './styles';
 
-export default function Checkin({data}) {
+export default function CheckinItem({data}) {
   const {id, created_at} = data.item;
 
   const dateParsed = useMemo(() => {

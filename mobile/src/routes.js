@@ -6,7 +6,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import SignIn from '~/pages/SignIn';
-import Checkins from '~/pages/Checkins';
+import Checkins from '~/pages/Checkin';
 
 import NewHelp from '~/pages/HelpOrder/New';
 import HelpRequest from '~/pages/HelpOrder/HelpRequest';

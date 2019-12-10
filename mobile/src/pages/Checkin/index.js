@@ -4,29 +4,29 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {NewCheckin, List} from './styles';
 
 import Container from '~/components/Container';
-import Checkin from '~/components/Checkin';
+import CheckinItem from './CheckinItem';
 
 import api from '~/services/api';
 
 export default function Checkins() {
-  const [checkins, setCheckins] = useState([]);
+  const [checkinList, setCheckinList] = useState([]);
 
-  async function loadCheckins() {
+  async function loadListCheckin() {
     const response = await api.get('students/1/checkins');
-    setCheckins(response.data);
+    setCheckinList(response.data);
   }
 
   useEffect(() => {
-    loadCheckins();
+    loadListCheckin();
   }, []);
 
   return (
     <Container>
       <NewCheckin onPress={() => {}}>Novo check-in</NewCheckin>
       <List
-        data={checkins}
+        data={checkinList}
         keyExtractor={item => String(item.id)}
-        renderItem={item => <Checkin data={item} />}
+        renderItem={item => <CheckinItem data={item} />}
       />
     </Container>
   );
