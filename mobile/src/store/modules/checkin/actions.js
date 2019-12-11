@@ -6,18 +6,18 @@ export const Types = {
 
 export function checkinRequest(id) {
   return {
-    type: '@checkin/CHECK_IN_REQUEST',
+    type: Types.CHECKIN_REQUEST,
     payload: {id},
   };
 }
 
 export function checkinSuccess() {
   return {
-    type: '@checkin/CHECK_IN_SUCCESS',
+    type: Types.CHECKIN_SUCCESS,
   };
 }
 export function checkinFailure() {
   return {
-    type: '@checkin/CHECK_IN_FAILURE',
+    type: Types.CHECKIN_FAILURE,
   };
 }
