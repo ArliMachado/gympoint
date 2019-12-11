@@ -21,7 +21,10 @@ export const Title = styled.Text`
   margin-bottom: ${metrics.baseMargin * 1.5}px;
 `;
 
-export const CreatedAt = styled.Text``;
+export const CreatedAt = styled.Text`
+  font-size: ${fonts.regular}px;
+  color: ${colors.dark};
+`;
 
 export const Question = styled.Text`
   margin-bottom: ${metrics.baseMargin * 2}px;
