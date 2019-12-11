@@ -6,16 +6,16 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import SignIn from '~/pages/SignIn';
-import Checkins from '~/pages/Checkin';
+import Checkin from '~/pages/Checkin';
 
 import NewHelp from '~/pages/HelpOrder/New';
-import HelpRequest from '~/pages/HelpOrder/HelpRequest';
+import HelpOrder from '~/pages/HelpOrder';
 import HelpAnswered from '~/pages/HelpOrder/HelpAnswered';
 
-const HelpOrders = {
+const Help = {
   screen: createStackNavigator(
     {
-      HelpRequest,
+      HelpOrder,
       NewHelp,
       HelpAnswered,
     },
@@ -34,8 +34,8 @@ const HelpOrders = {
 
 const AppStack = createBottomTabNavigator(
   {
-    Checkins,
-    HelpRequest: HelpOrders,
+    Checkin,
+    Help,
   },
   {
     tabBarOptions: {

@@ -8,7 +8,7 @@ export default function New({navigation}) {
   const [textHelp, setTextHelp] = useState('');
 
   function handleBackToPage() {
-    navigation.navigate('HelpRequest');
+    navigation.navigate('HelpOrder');
   }
 
   return (

@@ -13,7 +13,7 @@ import {
   Question,
 } from './styles';
 
-export default function Help({data, handleHelp}) {
+export default function HelpOrderItem({data, handleHelp}) {
   const {answered, createdAt, question} = data.item;
 
   const dateParsed = useMemo(() => {

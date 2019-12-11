@@ -24,7 +24,7 @@ export default function HelpAnswered({navigation}) {
   }, [createdAt]);
 
   function handleBackHelpOrders() {
-    navigation.navigate('HelpRequest');
+    navigation.navigate('HelpOrder');
   }
   return (
     <Container navigateTo={handleBackHelpOrders}>
