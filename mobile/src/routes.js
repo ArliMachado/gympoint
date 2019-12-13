@@ -27,7 +27,7 @@ const Help = {
       defaultNavigationOptions: {
         headerTitle: <Header />,
         headerLeftContainerStyle: {
-          marginLeft: 20,
+          marginLeft: 5,
           color: '#000',
         },
       },
