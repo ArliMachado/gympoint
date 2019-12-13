@@ -2,6 +2,8 @@ import React, {useMemo} from 'react';
 
 import {parseISO, formatDistanceStrict} from 'date-fns';
 import pt from 'date-fns/locale/pt';
+
+import Header from '~/components/Header';
 import Container from '~/components/Container';
 
 import {
@@ -23,11 +25,8 @@ export default function HelpAnswered({navigation}) {
     });
   }, [createdAt]);
 
-  function handleBackHelpOrders() {
-    navigation.navigate('HelpOrder');
-  }
   return (
-    <Container navigateTo={handleBackHelpOrders}>
+    <Container>
       <Content>
         <ContentHeader>
           <Title>PERGUNTA</Title>

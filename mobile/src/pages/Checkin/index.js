@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {NewCheckin, List} from './styles';
 
@@ -31,10 +30,3 @@ export default function Checkins() {
     </Container>
   );
 }
-
-Checkins.navigationOptions = {
-  tabBarLabel: 'Check-ins',
-  tabBarIcon: ({tintColor}) => (
-    <Icon name="edit-location" size={20} color={tintColor} />
-  ),
-};
