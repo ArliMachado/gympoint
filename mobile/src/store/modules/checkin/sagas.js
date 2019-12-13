@@ -18,4 +18,6 @@ export function* checkIn({payload}) {
   }
 }
 
-export default all([takeLatest(Types.CHECKIN_REQUEST, checkIn)]);
+// export function* getCheckins({ payload})//aqui;
+
+export default all([takeLatest(Types.NEW_CHECKIN_REQUEST, checkIn)]);
