@@ -11,7 +11,7 @@ export const Container = styled.KeyboardAvoidingView.attrs({
   flex: 1;
   justify-content: center;
   align-items: center;
-  padding: 0 ${metrics.basePadding}px;
+  padding: 0 ${metrics.basePadding * 2.5}px;
 `;
 
 export const LogoContent = styled.View`
