@@ -9,7 +9,7 @@ export default {
   green: '#42cb59',
 
   primary: '#ee4e62',
-  secundary: '#ECEEF3',
+  secundary: '#F5F5F5',
 
   transparent: 'transparent',
   darkTransparent: 'rgba(0,0,0,0.5)',
