@@ -9,25 +9,17 @@ import CheckinItem from './CheckinItem';
 
 import {checkinRequest} from '~/store/modules/checkin/actions';
 
-import api from '~/services/api';
-
-function Checkins({isFocused}) {
+function Checkins() {
   const dispatch = useDispatch();
 
   const {student_id} = useSelector(state => state.sign);
+  const {checkins} = useSelector(state => state.checkin);
 
   const [checkinList, setCheckinList] = useState([]);
 
   useEffect(() => {
-    async function loadListCheckin() {
-      const response = await api.get(`students/${student_id}/checkins`);
-      setCheckinList(response.data);
-    }
-    console.tron.log(`isFocused: ${isFocused}`);
-    if (isFocused) {
-      loadListCheckin();
-    }
-  }, [isFocused, student_id]);
+    setCheckinList(checkins);
+  }, [checkins]);
 
   function handleCheckin() {
     dispatch(checkinRequest(student_id));

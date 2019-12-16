@@ -3,7 +3,13 @@ import {Alert} from 'react-native';
 
 import api from '~/services/api';
 
-import {Types, checkinSuccess, checkinFailure} from './actions';
+import {
+  Types,
+  checkinSuccess,
+  getCheckinRequest,
+  getCheckinSuccess,
+  checkinFailure,
+} from './actions';
 
 export function* checkIn({payload}) {
   try {
@@ -12,12 +18,27 @@ export function* checkIn({payload}) {
     yield call(api.post, `/students/${id}/checkins`);
 
     yield put(checkinSuccess());
+    yield put(getCheckinRequest(id));
   } catch (err) {
     yield put(checkinFailure());
     Alert.alert('Erro no Checkin', 'Houve um erro ao efetuar checkin');
   }
 }
 
-// export function* getCheckins({ payload})//aqui;
+export function* getCheckins({payload}) {
+  try {
+    const {id} = payload;
 
-export default all([takeLatest(Types.NEW_CHECKIN_REQUEST, checkIn)]);
+    const {data} = yield call(api.get, `/students/${id}/checkins`);
+
+    yield put(getCheckinSuccess(data));
+  } catch (err) {
+    yield put(checkinFailure());
+    Alert.alert('Erro no Checkin', 'Houve um erro ao listar checkin');
+  }
+}
+
+export default all([
+  takeLatest(Types.NEW_CHECKIN_REQUEST, checkIn),
+  takeLatest(Types.GET_CHECKIN_REQUEST, getCheckins),
+]);

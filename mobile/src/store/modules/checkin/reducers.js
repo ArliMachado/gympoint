@@ -8,7 +8,6 @@ export default function checkin(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
       case CheckinTypes.NEW_CHECKIN_REQUEST: {
-        draft.student_id = action.payload.id;
         draft.loading = true;
         break;
       }
