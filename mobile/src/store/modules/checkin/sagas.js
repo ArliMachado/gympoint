@@ -17,11 +17,13 @@ export function* checkIn({payload}) {
 
     yield call(api.post, `/students/${id}/checkins`);
 
+    Alert.alert('Sucesso', 'Checkin efetuado com sucesso');
     yield put(checkinSuccess());
+
     yield put(getCheckinRequest(id));
-  } catch (err) {
+  } catch ({response}) {
     yield put(checkinFailure());
-    Alert.alert('Erro no Checkin', 'Houve um erro ao efetuar checkin');
+    Alert.alert('Erro ao efetuar checkin', response.data.error);
   }
 }
 
